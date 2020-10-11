@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Button, Text, Container, View } from 'native-base';
+
 import { styles } from "./styles";
 
 export const HomeScreen = ({
@@ -8,7 +9,7 @@ export const HomeScreen = ({
   const handlePressBegin = () => navigation.navigate('ConfigScreen');
 
   return (
-    <View style={styles.container}>
+    <Container style={styles.container}>
       <View>
         <Text style={styles.title}>
           Welcome to the
@@ -24,10 +25,9 @@ export const HomeScreen = ({
 
       <Text style={styles.info}>Can you score 100% ?</Text>
 
-      <Button
-        title="BEGIN"
-        onPress={handlePressBegin}
-      />
-    </View>
+      <Button block onPress={handlePressBegin}>
+        <Text>BEGIN</Text>
+      </Button>
+    </Container>
   );
 }

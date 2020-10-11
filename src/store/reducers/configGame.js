@@ -11,6 +11,8 @@ const initialState = {
 
 import { handleActions } from "../../utils/redux-utils";
 
+export const getIsFetching = state => state.configGame.isFetching;
+export const getCategories = state => state.configGame.trivia_categories;
 
 export const configGame = handleActions({
   [RECEIVE_GAME_CONFIG]: (state) => {

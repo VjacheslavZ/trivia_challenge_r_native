@@ -5,7 +5,7 @@ import { configGame } from "./configGame";
 const reducers = combineReducers({
   configGame
 });
-const REDUX_DEVTOOLS = window && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() || ''
+const REDUX_DEVTOOLS = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() || ''
 const initialState = {};
 
 export const store = createStore(

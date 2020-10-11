@@ -17,28 +17,28 @@ export default function App() {
   return (
     <React.Fragment>
       <Provider store={store}>
-          <NavigationContainer >
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{ title: 'Home screen' }}
-              />
-              <Stack.Screen
-                name="ConfigScreen"
-                component={ConfigGameScreen}
-                options={{ title: 'Configure game' }}
-              />
-              <Stack.Screen
-                name="ziuQ"
-                component={QuizScreen}
-                options={{ title: '' }}
-              />
-            </Stack.Navigator>
+        <NavigationContainer >
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ title: 'Home screen' }}
+            />
+            <Stack.Screen
+              name="ConfigScreen"
+              component={ConfigGameScreen}
+              options={{ title: 'Configure game' }}
+            />
+            <Stack.Screen
+              name="ziuQ"
+              component={QuizScreen}
+              options={{ title: '' }}
+            />
+          </Stack.Navigator>
 
-            <StatusBar style="dark" />
-          </NavigationContainer>
-        </Provider>
+          <StatusBar style="dark" />
+        </NavigationContainer>
+      </Provider>
     </React.Fragment>
   );
 }

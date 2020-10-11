@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { Text, View, Button } from 'react-native';
+import { styles } from "./styles";
 
 export const HomeScreen = ({
   navigation
@@ -7,12 +8,21 @@ export const HomeScreen = ({
   const handlePressBegin = () => navigation.navigate('ConfigScreen');
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Welcome to the</Text>
-      <Text>Trivia  challenge</Text>
+    <View style={styles.container}>
+      <View>
+        <Text style={styles.title}>
+          Welcome to the
+        </Text>
+        <Text style={styles.title}>
+          Trivia  challenge
+        </Text>
+      </View>
 
-      <Text>You weill be presented with 10 True of False questions</Text>
-      <Text>Can you score 100% ?</Text>
+      <Text style={styles.info}>
+        You weill be presented with 10 True of False questions
+      </Text>
+
+      <Text style={styles.info}>Can you score 100% ?</Text>
 
       <Button
         title="BEGIN"

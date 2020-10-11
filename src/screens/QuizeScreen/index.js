@@ -1,10 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { connect } from "react-redux";
 
-export const QuizScreen = () => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Quiz Screen</Text>
-    </View>
-  );
-}
+import {QuizScreenComponent} from "./QuizeScreen";
+import { getDiifficulty, getCategory } from "../../store/reducers/configGame";
+
+const mapStateToProps = state => console.log("state", state) || ({
+  diifficulty: getDiifficulty(state),
+  category: getCategory(state)
+});
+
+
+export const QuizScreen = connect(mapStateToProps)(QuizScreenComponent)

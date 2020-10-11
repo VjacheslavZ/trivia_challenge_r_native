@@ -2,17 +2,23 @@ import {
   RECEIVE_GAME_CONFIG,
   RECEIVE_GAME_SUCCESS,
   RECEIVE_GAME_FAIL,
+  SET_DIFFICULTY,
+  SET_CATEGORY,
 } from "../actions/configGame";
 
 const initialState = {
   isFetching: false,
-  trivia_categories: []
+  trivia_categories: [],
+  category: "",
+  difficulty: "",
 }
 
 import { handleActions } from "../../utils/redux-utils";
 
 export const getIsFetching = state => state.configGame.isFetching;
 export const getCategories = state => state.configGame.trivia_categories;
+export const getDiifficulty = state => state.configGame.difficulty;
+export const getCategory = state => state.configGame.category;
 
 export const configGame = handleActions({
   [RECEIVE_GAME_CONFIG]: (state) => {
@@ -22,7 +28,6 @@ export const configGame = handleActions({
     }
   },
   [RECEIVE_GAME_SUCCESS]: (state, { payload }) => {
-    console.log("trivia_categories", payload)
     return {
       ...state,
       isFetching: false,
@@ -33,6 +38,18 @@ export const configGame = handleActions({
     return {
       ...state,
       isFetching: false,
+    }
+  },
+  [SET_DIFFICULTY]: (state, { payload }) => {
+    return {
+      ...state,
+      difficulty: payload
+    }
+  },
+  [SET_CATEGORY]: (state, { payload }) => {
+    return {
+      ...state,
+      category: payload
     }
   }
 }, initialState)

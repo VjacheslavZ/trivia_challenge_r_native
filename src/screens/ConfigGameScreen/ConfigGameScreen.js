@@ -8,6 +8,8 @@ export const ConfigGameScreenComponent = ({
   getConfigGame,
   isFetching,
   categories,
+  setDifficulty: setDifficultyAction,
+  setCategory: setCategoryAction,
 }) => {
   useEffect(() => {
     getConfigGame()
@@ -23,6 +25,16 @@ export const ConfigGameScreenComponent = ({
     navigation.navigate("Quiz")
   }
 
+  const handlePressDifficult = (value) => {
+    setDifficult(value)
+    setDifficultyAction(value)
+  }
+
+  const handlePressCategory = (value) => {
+    setCategory(value)
+    setCategoryAction(value)
+  }
+
   return (
     <Container style={styles.container}>
       <Content>
@@ -36,7 +48,7 @@ export const ConfigGameScreenComponent = ({
               placeholderStyle={{ color: "#bfc6ea" }}
               placeholderIconColor="#007aff"
               selectedValue={category}
-              onValueChange={setCategory}
+              onValueChange={handlePressCategory}
             >
               {categoryItems}
             </Picker>
@@ -50,7 +62,7 @@ export const ConfigGameScreenComponent = ({
               placeholderStyle={{ color: "#bfc6ea" }}
               placeholderIconColor="#007aff"
               selectedValue={difficult}
-              onValueChange={setDifficult}
+              onValueChange={handlePressDifficult}
             >
               <Picker.Item label="Any difficulty" value="any" />
               <Picker.Item label="Easy" value="easy" />

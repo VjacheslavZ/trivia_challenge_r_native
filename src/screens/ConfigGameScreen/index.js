@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import { ConfigGameScreenComponent } from "./ConfigGameScreen";
 
-import { getConfigGame } from "../../store/actions/configGame";
+import { getConfigGame, setDifficulty, setCategory } from "../../store/actions/configGame";
 import { getIsFetching, getCategories } from "../../store/reducers/configGame";
 
 const mapStateToProps = state => ({
@@ -11,7 +11,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  getConfigGame
+  getConfigGame,
+  setDifficulty,
+  setCategory,
 }
 
 export const ConfigGameScreen =

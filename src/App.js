@@ -36,7 +36,7 @@ export default function App() {
               />
             </Stack.Navigator>
 
-            <StatusBar style="dark" />~
+            <StatusBar style="dark" />
           </NavigationContainer>
         </Provider>
     </React.Fragment>

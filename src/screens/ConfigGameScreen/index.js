@@ -1,12 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { connect } from "react-redux";
 
-export const ConfigGameScreen = ({
-   navigation
-}) => {
-  return (
-    <View>
-      <Text>Config game screen</Text>
-    </View>
-  )
+import { ConfigGameScreenComponent } from "./ConfigGameScreen";
+import { getConfigGame } from "../../store/actions/configGame";
+
+const mapDispatchToProps = {
+  getConfigGame
 }
+
+export const ConfigGameScreen =
+  connect(null, mapDispatchToProps)(ConfigGameScreenComponent)

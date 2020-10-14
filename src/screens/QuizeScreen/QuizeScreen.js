@@ -33,26 +33,31 @@ export const QuizScreenComponent = ({
     fetchQuestions(query)
   }, []);
 
-  useEffect(() => {
-    if (questionIndex === questions.length - 1) {
-      navigation.navigate("Home") // TODO
-    }
-  }, [questionIndex])
 
-  if (isFetching) return <Spinner />;
-
-  const currentQuestion = questions[questionIndex];
+  let question;
+  const currentQuestion = questions[questionIndex] || {};
   const entities = new Html5Entities();
+  if (Object.keys(currentQuestion).length) {
+    question = entities.decode(currentQuestion.question);
+  }
 
   const handleAnswer = answer => {
     const answerData = {
       ...currentQuestion,
+      question,
       userAnswer: answer,
     };
 
     setAnswer(answerData)
+    if ((questionIndex === questions.length - 1) && questions.length) {
+      navigation.navigate("Score");
+      return
+    }
+
     setQuestionIndex(questionIndex + 1);
   }
+
+  if (isFetching) return <Spinner />;
 
   return (
     <Container style={styles.container}>
@@ -64,7 +69,7 @@ export const QuizScreenComponent = ({
 
         <View style={styles.question}>
           <Text>
-            {entities.decode(currentQuestion.question)}
+            {question}
           </Text>
         </View>
 

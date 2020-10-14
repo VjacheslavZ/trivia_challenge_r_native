@@ -25,6 +25,6 @@ export const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   progressContainer: {
-    marginTop: 50
+    marginTop: 50,
   }
 })

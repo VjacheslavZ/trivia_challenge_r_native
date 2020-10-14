@@ -11,6 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 import { HomeScreen } from "./screens/HomeScreen";
 import { QuizScreen } from "./screens/QuizeScreen";
 import { ConfigGameScreen } from "./screens/ConfigGameScreen";
+import { ScoreScreen } from "./screens/ScoresScreen";
 
 import { store } from "./store/reducers";
 
@@ -53,6 +54,11 @@ export default function App() {
             <Stack.Screen
               name="Quiz"
               component={QuizScreen}
+              options={{ title: '' }}
+            />
+            <Stack.Screen
+              name="Score"
+              component={ScoreScreen}
               options={{ title: '' }}
             />
           </Stack.Navigator>

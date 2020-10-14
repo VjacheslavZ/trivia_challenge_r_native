@@ -7,8 +7,9 @@ import {
 
 import { handleActions } from "../../utils/redux-utils";
 
-export const getQuestions = state => state.game.questions
-export const getIsFetching = state => state.game.fetching
+export const getQuestions = state => state.game.questions;
+export const getIsFetching = state => state.game.fetching;
+export const getAnswers = state => state.game.answers;
 
 const initialState = {
   fetching: true,

@@ -3,6 +3,7 @@ import {
   RECEIVE_QUESTIONS_SUCCESS,
   RECEIVE_QUESTIONS_FAIL,
   SET_ANSWER,
+  CLEAR_ANSWERS,
 } from "../actions/game";
 
 import { handleActions } from "../../utils/redux-utils";
@@ -38,4 +39,8 @@ export const game = handleActions({
       payload,
     ]
   }),
+  [CLEAR_ANSWERS]: state => ({
+    ...state,
+    answers: [],
+  })
 }, initialState)

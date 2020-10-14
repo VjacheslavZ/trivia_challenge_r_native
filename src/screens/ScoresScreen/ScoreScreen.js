@@ -5,11 +5,16 @@ import {
   View,
   Content,
   List,
-  ListItem
+  ListItem,
+  Button,
 } from 'native-base';
+
+import { styles } from "./styled";
 
 export const ScoreScreenComponent = ({
  answers,
+ navigation,
+ clearAnswers,
 }) => {
   let score = 0;
 
@@ -20,16 +25,23 @@ export const ScoreScreenComponent = ({
     }
     return (
       <ListItem key={question}>
-        {isCorrectAnswer ? <Text>+</Text>:<Text>-</Text>}
+        {isCorrectAnswer ?
+          <Text style={styles.isCorrect}>+</Text> :
+          <Text style={styles.isCorrect}>-</Text>}
         <Text>{question}</Text>
       </ListItem>
     )
   })
 
+  const handlePressButton = () => {
+    clearAnswers();
+    navigation.navigate('ConfigScreen')
+  };
+
   return (
-    <Container>
+    <Container style={styles.container}>
       <Content>
-        <View>
+        <View style={styles.result}>
           <Text>You scored</Text>
           <Text>{score} / {answers.length}</Text>
         </View>
@@ -37,6 +49,12 @@ export const ScoreScreenComponent = ({
         <List>
           {result}
         </List>
+
+        <View style={styles.buttonContainer}>
+          <Button block onPress={handlePressButton}>
+            <Text>Play Again</Text>
+          </Button>
+        </View>
       </Content>
     </Container>
   )

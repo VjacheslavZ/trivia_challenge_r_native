@@ -11,8 +11,8 @@ export const styles = StyleSheet.create({
   },
   question: {
     marginTop: 100,
-    height: 300,
     width: 300,
+    flex: 0.5,
     borderWidth: 2,
     borderColor: "#000",
     justifyContent: "center",
@@ -23,8 +23,11 @@ export const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
+    alignItems: "flex-end",
+    flex: 0.2,
   },
   progressContainer: {
     marginTop: 50,
+    flex: 0.2,
   }
 })

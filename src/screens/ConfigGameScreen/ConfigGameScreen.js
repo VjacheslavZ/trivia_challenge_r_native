@@ -15,8 +15,8 @@ export const ConfigGameScreenComponent = ({
     getConfigGame()
   }, []);
 
-  const [category, setCategory] = useState('all');
-  const [difficult, setDifficult] = useState('any');
+  const [category, setCategory] = useState('');
+  const [difficult, setDifficult] = useState('');
 
   if (isFetching) return <Spinner color='blue'/>
   const categoryItems = categories.map(({id, name}) => <Picker.Item label={name} value={id} key={id}/>)
@@ -50,6 +50,7 @@ export const ConfigGameScreenComponent = ({
               selectedValue={category}
               onValueChange={handlePressCategory}
             >
+              <Picker.Item label="Any category" value=""/>
               {categoryItems}
             </Picker>
           </Item>
@@ -64,7 +65,7 @@ export const ConfigGameScreenComponent = ({
               selectedValue={difficult}
               onValueChange={handlePressDifficult}
             >
-              <Picker.Item label="Any difficulty" value="any" />
+              <Picker.Item label="Any difficulty" value="" />
               <Picker.Item label="Easy" value="easy" />
               <Picker.Item label="Medium" value="medium" />
               <Picker.Item label="Hard" value="hard" />

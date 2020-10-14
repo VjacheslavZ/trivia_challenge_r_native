@@ -10,6 +10,7 @@ import { TriviaApi } from "../../api/TriviaApi";
 const receiveConfig = ({
   type: RECEIVE_GAME_CONFIG
 })
+
 const receiveConfigSuccess = payload => ({
   type: RECEIVE_GAME_SUCCESS,
   payload

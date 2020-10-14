@@ -8,8 +8,10 @@ import {
   Text,
   View,
   Header,
-  Button
+  Button,
+  Content
 } from 'native-base';
+import { SafeAreaView, FlatList, StyleSheet, StatusBar, Dimensions, Animated } from 'react-native';
 
 import { styles } from "./styles";
 
@@ -23,7 +25,7 @@ export const QuizScreenComponent = ({
   navigation,
 }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
-
+  const CARD_HEIGHT = (Dimensions.get('window').height) - 100
   useEffect(() => {
     const query = queryString.stringify({
       diifficulty,
@@ -59,22 +61,57 @@ export const QuizScreenComponent = ({
 
   if (isFetching) return <Spinner />;
 
-  return (
-    <Container style={styles.container}>
-        <Header style={styles.header}>
-          <Title>
-            {currentQuestion.category}
-          </Title>
-        </Header>
+  const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
+  const { height: wHeight } = Dimensions.get("window");
+  const height = wHeight - 64;
 
+  const Card = ({ data, y }) => {
+    let { index } = data;
+    console.log("y", y)
+
+    const position = Animated.subtract(index * CARD_HEIGHT, y);
+    const isDisappearing = -CARD_HEIGHT;
+    const isTop = 0;
+    const isBottom = height - CARD_HEIGHT
+    const isAppearing = height;
+
+    const scale = position.interpolate({
+      inputRange: [isDisappearing, isTop, isBottom, isAppearing],
+      outputRange: [0.5, 1, 1, 0.5],
+      extrapolate: "clamp",
+    });
+
+    const opacity = position.interpolate({
+      inputRange: [isDisappearing, isTop, isBottom, isAppearing],
+      outputRange: [0.5, 1, 1, 0.5],
+    });
+
+    const translateY = Animated.add(
+      Animated.add(
+        y,
+        y.interpolate({
+          inputRange: [0, 0.00001 + index * CARD_HEIGHT],
+          outputRange: [0, -index * CARD_HEIGHT],
+          extrapolateRight: "clamp",
+        })
+      ),
+      position.interpolate({
+        inputRange: [isBottom, isAppearing],
+        outputRange: [0, -CARD_HEIGHT / 4],
+        extrapolate: "clamp",
+      })
+    );
+
+    return(
+      <Animated.View style={[styles.container, { opacity, transform: [{translateY}, { scale }] }]}>
         <View style={styles.question}>
           <Text>
-            {question}
+            {data.item.question}
           </Text>
         </View>
 
         <View style={styles.progressContainer}>
-          <Text>{questionIndex + 1} of {questions.length}</Text>
+          <Text>{data.index + 1} of {questions.length}</Text>
         </View>
 
         <View style={styles.buttonContainer}>
@@ -85,6 +122,38 @@ export const QuizScreenComponent = ({
             <Text>False</Text>
           </Button>
         </View>
-    </Container>
+      </Animated.View>
+    )
+  }
+
+  const y = new Animated.Value(0);
+  const onScroll = Animated.event([
+    {
+      nativeEvent: {
+        contentOffset: {
+          y
+        }
+      }
+    },
+  ], {
+    useNativeDriver: true
+  })
+
+  return (
+    <View style={{ flex: 1}}>
+      <Header style={styles.header}>
+        <Title>
+          {currentQuestion.category}
+        </Title>
+      </Header>
+        <AnimatedFlatList
+          scrollEventThrottle={16}
+          bounces={false}
+          data={questions}
+          renderItem={(data) => <Card y={y} data={data}/>}
+          keyExtractor={item => item.question}
+          {...{onScroll}}
+        />
+    </View>
   );
 }

@@ -1,8 +1,12 @@
 import { StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    flex: 1,
+    height: (Dimensions.get('window').height) - 100,
+    backgroundColor: '#fff'
   },
   header: {
     alignItems: 'center',

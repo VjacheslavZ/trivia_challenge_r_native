@@ -15,5 +15,16 @@ export const styles = StyleSheet.create({
     width: 300,
     borderWidth: 2,
     borderColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonContainer: {
+    marginTop: 100,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  progressContainer: {
+    marginTop: 50
   }
 })

@@ -2,6 +2,7 @@ import {
   RECEIVE_QUESTIONS_CONFIG,
   RECEIVE_QUESTIONS_SUCCESS,
   RECEIVE_QUESTIONS_FAIL,
+  SET_ANSWER,
 } from "../actions/game";
 
 import { handleActions } from "../../utils/redux-utils";
@@ -16,23 +17,24 @@ const initialState = {
 }
 
 export const game = handleActions({
-  [RECEIVE_QUESTIONS_CONFIG]: (state) => {
-    return {
-      ...state,
-      fetching: true
-    }
-  },
-  [RECEIVE_QUESTIONS_SUCCESS]: (state, { payload }) => {
-    return {
-      ...state,
-      fetching: false,
-      questions: payload
-    }
-  },
-  [RECEIVE_QUESTIONS_FAIL]: (state) => {
-    return {
-      ...state,
-      fetching: false
-    }
-  },
+  [RECEIVE_QUESTIONS_CONFIG]: state => ({
+    ...state,
+    fetching: true,
+  }),
+  [RECEIVE_QUESTIONS_SUCCESS]: (state, { payload }) => ({
+    ...state,
+    fetching: false,
+    questions: payload,
+  }),
+  [RECEIVE_QUESTIONS_FAIL]: state => ({
+    ...state,
+    fetching: false,
+  }),
+  [SET_ANSWER]: (state, { payload }) => ({
+    ...state,
+    answers: [
+      ...state.answers,
+      payload,
+    ]
+  }),
 }, initialState)

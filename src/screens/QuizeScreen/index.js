@@ -7,7 +7,7 @@ import {
   getCategories,
 } from "../../store/reducers/configGame";
 import { getQuestions, getIsFetching } from "../../store/reducers/game";
-import { fetchQuestions } from "../../store/actions/game";
+import { fetchQuestions, setAnswer } from "../../store/actions/game";
 
 const mapStateToProps = state => ({
   diifficulty: getDiifficulty(state),
@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchQuestions,
+  setAnswer,
 }
 
 export const QuizScreen = connect(mapStateToProps, mapDispatchToProps)(QuizScreenComponent)
